@@ -2,13 +2,16 @@ const express = require("express");
 
 const cors = require("cors");
 
-const { client, connectToDatabase } = require("./database");
+const { connectToDatabase } = require("./database");
+
+const getAll = require("./controller/getAll");
+const getByName = require("./controller/getByName");
+const deleteById = require("./controller/deleteById");
+const createProduct = require("./controller/createProduct");
 
 connectToDatabase();
 
 const app = express();
-
-const dbName = "crud_rocketseat";
 
 // middleware
 app.use(express.json());
@@ -18,77 +21,15 @@ app.get("/", (req, res) => {
   res.json({ message: "Oks" });
 });
 
-// connect with DB
-app.get("/getByName", (req, res) => {
-  const name = req.body.name;
+// routes
+app.get("/getAll", getAll);
 
-  (async function () {
-    try {
-      const db = client.db(dbName);
+app.get("/getByName", getByName);
 
-      const col = db.collection("product");
-
-      const myDoc = await col.findOne({ name: name });
-
-      res.json(myDoc);
-    } catch (err) {
-      console.log(err.stack);
-    }
-  })();
-});
-
-app.get("/getAll", (req, res) => {
-  (async function () {
-    try {
-      const db = client.db(dbName);
-
-      const col = db.collection("product");
-
-      const myDoc = await col.find({}).toArray();
-
-      res.json(myDoc);
-    } catch (err) {
-      console.log(err.stack);
-    }
-  })();
-});
-
-app.post("/createProduct", (req, res) => {
-  const { name, price } = req.body;
-
-  (async function () {
-    try {
-      const db = client.db(dbName);
-
-      const col = db.collection("product");
-
-      await col.insertOne({ name: name, price: price });
-
-      res.json("Product created from DB");
-    } catch (err) {
-      console.log(err.stack);
-    }
-  })();
-});
+app.post("/createProduct", createProduct);
 
 // TODO: Delete não está funcionando.
-app.delete("/deleteById", (req, res) => {
-  const id = req.body.id;
-
-  (async function connect() {
-    try {
-      const db = client.db(dbName);
-
-      const col = db.collection("product");
-
-      await col.deleteOne({ _id: id });
-
-      res.json("Product deleted from DB");
-    } catch (err) {
-      console.log(err.stack);
-    }
-  })();
-});
+app.delete("/deleteById", deleteById);
 
 app.listen(3001, () => {
   console.log("rodando na porta 3001");

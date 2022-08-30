@@ -3,7 +3,7 @@ const { client } = require("../database");
 const dbName = "crud_rocketseat";
 
 const getByName = (req, res) => {
-  const name = req.body.name;
+  const { name } = req.body;
 
   (async function () {
     try {

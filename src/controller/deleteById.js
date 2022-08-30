@@ -1,9 +1,11 @@
+const mongodb = require("mongodb");
+
 const { client } = require("../database");
 
 const dbName = "crud_rocketseat";
 
 const deleteById = (req, res) => {
-  const id = req.body.id;
+  const { id } = req.body;
 
   (async function connect() {
     try {
@@ -11,7 +13,7 @@ const deleteById = (req, res) => {
 
       const col = db.collection("product");
 
-      await col.deleteOne({ _id: id });
+      await col.deleteOne({ _id: mongodb.ObjectId(id) });
 
       res.json("Product deleted from DB");
     } catch (err) {

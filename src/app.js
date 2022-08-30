@@ -8,6 +8,7 @@ const getAll = require("./controller/getAll");
 const getByName = require("./controller/getByName");
 const deleteById = require("./controller/deleteById");
 const createProduct = require("./controller/createProduct");
+const getAllWithPagination = require("./controller/getAllWithPagination");
 
 connectToDatabase();
 
@@ -17,18 +18,19 @@ const app = express();
 app.use(express.json());
 app.use(cors());
 
+// routes
 app.get("/", (req, res) => {
   res.json({ message: "Oks" });
 });
 
-// routes
 app.get("/getAll", getAll);
+
+app.get("/getAllWithPagination", getAllWithPagination);
 
 app.get("/getByName", getByName);
 
 app.post("/createProduct", createProduct);
 
-// TODO: Delete não está funcionando.
 app.delete("/deleteById", deleteById);
 
 app.listen(3001, () => {

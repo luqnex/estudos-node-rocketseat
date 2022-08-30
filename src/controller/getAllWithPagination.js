@@ -13,9 +13,10 @@ const getAllWithPagination = async (req, res) => {
 
     const col = db.collection("product");
 
+    const size = await col.find({}).toArray();
     const myDoc = await col.find({}).skip(salt).limit(limit).toArray();
 
-    res.json(myDoc);
+    res.status(200).json({ data: myDoc, size: size.length });
   } catch (err) {
     console.log(err.stack);
   }

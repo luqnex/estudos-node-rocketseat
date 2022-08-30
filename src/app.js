@@ -5,9 +5,9 @@ const cors = require("cors");
 const { connectToDatabase } = require("./database");
 
 const getAll = require("./controller/getAll");
+const create = require("./controller/create");
 const getByName = require("./controller/getByName");
 const deleteById = require("./controller/deleteById");
-const createProduct = require("./controller/createProduct");
 const getAllWithPagination = require("./controller/getAllWithPagination");
 
 connectToDatabase();
@@ -25,13 +25,13 @@ app.get("/", (req, res) => {
 
 app.get("/getAll", getAll);
 
-app.get("/getAllWithPagination", getAllWithPagination);
+app.post("/create", create);
 
 app.get("/getByName", getByName);
 
-app.post("/createProduct", createProduct);
-
 app.delete("/deleteById", deleteById);
+
+app.get("/getAllWithPagination", getAllWithPagination);
 
 app.listen(3001, () => {
   console.log("rodando na porta 3001");

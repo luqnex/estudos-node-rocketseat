@@ -2,7 +2,7 @@ const { client } = require("../database");
 
 const dbName = "crud_rocketseat";
 
-const createProduct = async (req, res) => {
+const create = async (req, res) => {
   const { name, price } = req.body;
 
   try {
@@ -18,4 +18,4 @@ const createProduct = async (req, res) => {
   }
 };
 
-module.exports = createProduct;
+module.exports = create;

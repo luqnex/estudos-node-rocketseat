@@ -6,6 +6,7 @@ const { connectToDatabase } = require("./database");
 
 const getAll = require("./controller/getAll");
 const create = require("./controller/create");
+const update = require("./controller/update");
 const getByName = require("./controller/getByName");
 const deleteById = require("./controller/deleteById");
 const getAllWithPagination = require("./controller/getAllWithPagination");
@@ -26,6 +27,8 @@ app.get("/", (req, res) => {
 app.get("/getAll", getAll);
 
 app.post("/create", create);
+
+app.put("/updateById", update);
 
 app.get("/getByName", getByName);
 

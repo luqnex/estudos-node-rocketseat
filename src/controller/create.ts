@@ -1,8 +1,10 @@
-const { client } = require("../database");
+import { Request, Response } from "express";
+
+import { client } from "../database";
 
 const dbName = "crud_rocketseat";
 
-const create = async (req, res) => {
+export const create = async (req: Request, res: Response) => {
   const { name, price } = req.body;
 
   try {
@@ -13,9 +15,7 @@ const create = async (req, res) => {
     await col.insertOne({ name: name, price: price });
 
     res.json("Product created from DB");
-  } catch (err) {
+  } catch (err: any) {
     console.log(err.stack);
   }
 };
-
-module.exports = create;

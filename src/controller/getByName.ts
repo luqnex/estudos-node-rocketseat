@@ -1,8 +1,9 @@
-const { client } = require("../database");
+import { Request, Response } from "express";
+import { client } from "../database";
 
 const dbName = "crud_rocketseat";
 
-const getByName = async (req, res) => {
+export const getByName = async (req: Request, res: Response) => {
   const { name } = req.body;
 
   try {
@@ -13,9 +14,7 @@ const getByName = async (req, res) => {
     const myDoc = await col.findOne({ name: name });
 
     res.json(myDoc);
-  } catch (err) {
+  } catch (err: any) {
     console.log(err.stack);
   }
 };
-
-module.exports = getByName;

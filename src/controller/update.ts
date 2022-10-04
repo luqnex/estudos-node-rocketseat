@@ -1,10 +1,12 @@
-const mongodb = require("mongodb");
+import { Request, Response } from "express";
 
-const { client } = require("../database");
+import { ObjectId } from "mongodb";
+
+import { client } from "../database";
 
 const dbName = "crud_rocketseat";
 
-const update = async (req, res) => {
+export const update = async (req: Request, res: Response) => {
   const { id, name, price } = req.body;
 
   try {
@@ -13,14 +15,12 @@ const update = async (req, res) => {
     const col = db.collection("product");
 
     await col.updateOne(
-      { _id: mongodb.ObjectId(id) },
+      { _id: new ObjectId(id) },
       { $set: { name: name, price: price } }
     );
 
     res.json("Product updated from DB");
-  } catch (err) {
+  } catch (err: any) {
     console.log(err.stack);
   }
 };
-
-module.exports = update;

@@ -20,7 +20,9 @@ export const update = async (req: Request, res: Response) => {
     );
 
     res.json("Product updated from DB");
-  } catch (err: any) {
-    console.log(err.stack);
+  } catch (err) {
+    if (err instanceof Error) {
+      res.json({ error: err.message });
+    }
   }
 };

@@ -15,7 +15,9 @@ export const create = async (req: Request, res: Response) => {
     await col.insertOne({ name: name, price: price });
 
     res.json("Product created from DB");
-  } catch (err: any) {
-    console.log(err.stack);
+  } catch (err) {
+    if (err instanceof Error) {
+      res.json({ error: err.message });
+    }
   }
 };

@@ -14,7 +14,9 @@ export const getByName = async (req: Request, res: Response) => {
     const myDoc = await col.findOne({ name: name });
 
     res.json(myDoc);
-  } catch (err: any) {
-    console.log(err.stack);
+  } catch (err) {
+    if (err instanceof Error) {
+      res.json({ error: err.message });
+    }
   }
 };

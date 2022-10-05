@@ -16,7 +16,9 @@ export const deleteById = async (req: Request, res: Response) => {
     await col.deleteOne({ _id: new ObjectId(id) });
 
     res.json("Product deleted from DB");
-  } catch (err: any) {
-    console.log(err.stack);
+  } catch (err) {
+    if (err instanceof Error) {
+      res.json({ error: err.message });
+    }
   }
 };

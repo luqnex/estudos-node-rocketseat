@@ -15,9 +15,9 @@ export const getAllWithPagination = async (req: Request, res: Response) => {
     const col = db.collection("product");
 
     const size = await col.find({}).toArray();
-    const myDoc = await col.find({}).skip(salt).limit(limit).toArray();
+    const data = await col.find({}).skip(salt).limit(limit).toArray();
 
-    res.status(200).json({ data: myDoc, size: size.length });
+    res.status(200).json({ data: data, size: size.length });
   } catch (err) {
     if (err instanceof Error) {
       res.json({ error: err.message });

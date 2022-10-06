@@ -7,6 +7,13 @@ const dbName = "crud_rocketseat";
 export const create = async (req: Request, res: Response) => {
   const { name, price } = req.body;
 
+  if (!name) {
+    return res.send({ message: "Nome é obrigatório!" });
+  }
+  if (!price) {
+    return res.send({ message: "Preço é obrigatório!" });
+  }
+
   try {
     const db = client.db(dbName);
 

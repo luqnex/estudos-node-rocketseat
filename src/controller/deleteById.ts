@@ -8,6 +8,10 @@ const dbName = "crud_rocketseat";
 export const deleteById = async (req: Request, res: Response) => {
   const { id } = req.body;
 
+  if (!id) {
+    return res.send({ message: "ID é obrigatório!" });
+  }
+
   try {
     const db = client.db(dbName);
 

@@ -6,6 +6,10 @@ const dbName = "crud_rocketseat";
 export const getByName = async (req: Request, res: Response) => {
   const { name } = req.body;
 
+  if (!name) {
+    return res.send({ message: "Digite um nome" });
+  }
+
   try {
     const db = client.db(dbName);
 

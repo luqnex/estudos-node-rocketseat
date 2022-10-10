@@ -35,7 +35,7 @@
 
 <h2>🛠️ Bibliotecas / Linguagens</h2>
 
--[NodeJs](https://nodejs.org/pt-br/) - Node.js® é um runtime JavaScript desenvolvido com o Chrome's V8 JavaScript engine.
+- [NodeJs](https://nodejs.org/pt-br/) - Node.js® é um runtime JavaScript desenvolvido com o Chrome's V8 JavaScript engine.
 
 - [TypeScript](https://www.typescriptlang.org/) - TypeScript é uma linguagem de programação fortemente tipada que se baseia em JavaScript, oferecendo melhores ferramentas em qualquer escala.
 

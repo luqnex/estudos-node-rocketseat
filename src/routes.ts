@@ -4,6 +4,7 @@ import { getAll } from "./controller/getAll";
 import { create } from "./controller/create";
 import { update } from "./controller/update";
 import { getByName } from "./controller/getByName";
+import { deleteAll } from "./controller/deleteAll";
 import { deleteById } from "./controller/deleteById";
 import { getAllWithPagination } from "./controller/getAllWithPagination";
 
@@ -20,6 +21,8 @@ router.post("/create", create);
 router.put("/updateById", update);
 
 router.get("/getByName", getByName);
+
+router.delete("/deleteAll", deleteAll);
 
 router.delete("/deleteById", deleteById);
 
